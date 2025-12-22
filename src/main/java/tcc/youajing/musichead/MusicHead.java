@@ -11,7 +11,7 @@ public class MusicHead extends BukkitPlugin {
         //TODO
         // 初始化团队管理器和监听器
 
-        Listener Listener = new Listener(this);
+        PlayerArmorChangeListener Listener = new PlayerArmorChangeListener(this);
         // 注册命令和监听器
         getServer().getPluginManager().registerEvents(Listener, this);
         // team,启动！
