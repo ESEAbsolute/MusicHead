@@ -4,8 +4,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
-import net.kyori.adventure.key.Key;
-import net.kyori.adventure.sound.Sound;
 import tcc.youajing.musichead.MusicHead;
 import tcc.youajing.musichead.objects.PlayerSettings;
 import tcc.youajing.musichead.messages.MessageLevel;

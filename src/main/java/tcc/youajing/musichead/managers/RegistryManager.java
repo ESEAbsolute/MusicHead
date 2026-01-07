@@ -56,9 +56,7 @@ public class RegistryManager {
                         JsonObject data = entry.getValue().getAsJsonObject();
                         String replacement = null;
                         if (data.has("replacement")) replacement = data.get("replacement").getAsString();
-                        else if (data.has("translation")) replacement = data.get("translation").getAsString();
-                        else if (data.has("replace")) replacement = data.get("replace").getAsString();
-                        
+
                         String fallback = data.has("fallback") ? data.get("fallback").getAsString() : null;
                         targetMap.put(entry.getKey(), new ReplacementData(replacement, fallback));
                     }

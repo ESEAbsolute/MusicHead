@@ -3,8 +3,7 @@
         "replacement": "namespace:key_in_client_resource"
     },
     "example_namespace:another_example_disc": {
-        "replacement": "example_namespace:example_disc_another",
-        "fallback": "fallback_sound_event"
+        "replacement": "example_namespace:example_disc_another"
     },
     "minecraft:11": {
         "replacement": "minecraft:music_disc.11"

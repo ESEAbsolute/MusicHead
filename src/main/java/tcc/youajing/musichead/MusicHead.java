@@ -2,13 +2,15 @@ package tcc.youajing.musichead;
 
 import crypticlib.BukkitPlugin;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import tcc.youajing.musichead.commands.MusicHeadCommand;
 import tcc.youajing.musichead.listeners.PlayerArmorChangeListener;
 import tcc.youajing.musichead.managers.ConfigManager;
 import tcc.youajing.musichead.managers.DatabaseManager;
 import tcc.youajing.musichead.managers.MusicManager;
 import tcc.youajing.musichead.managers.RegistryManager;
 import tcc.youajing.musichead.messages.MessageUtils;
+
+import java.util.logging.Level;
 
 public class MusicHead extends BukkitPlugin {
     private ConfigManager configManager;
@@ -35,11 +37,16 @@ public class MusicHead extends BukkitPlugin {
         registerCommands();
         registerListeners();
 
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.BLUE + "# MusicHead plugin has enabled! #");
+        messageUtils.log(Level.INFO, "log.plugin.enable.header");
+        messageUtils.log(Level.INFO, "log.plugin.enable.message");
+        messageUtils.log(Level.INFO, "log.plugin.enable.version", getDescription().getVersion());
+        messageUtils.log(Level.INFO, "log.plugin.enable.author", String.valueOf(getDescription().getAuthors()));
+        messageUtils.log(Level.INFO, "log.plugin.enable.footer");
     }
 
     private void registerCommands() {
-        getCommand("musichead").setExecutor(new tcc.youajing.musichead.commands.MusicHeadCommand(this));
+        getCommand("musichead").setExecutor(new MusicHeadCommand(this));
+        getCommand("musichead").setTabCompleter(new MusicHeadCommand(this));
     }
 
     private void registerListeners() {
@@ -51,7 +58,9 @@ public class MusicHead extends BukkitPlugin {
         if (databaseManager != null) {
             databaseManager.close();
         }
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "# MusicHead plugin has disabled! #");
+        messageUtils.log(Level.INFO, "log.plugin.disable.header");
+        messageUtils.log(Level.INFO, "log.plugin.disable.message");
+        messageUtils.log(Level.INFO, "log.plugin.disable.footer");
     }
 
     public ConfigManager getConfigManager() {

@@ -1,14 +1,14 @@
 {
     "jukebox_song.example_namespace.example_disc": {
-        "translation": "path.in.client.resource",
-        "fallback": "plugin lang code or string literal"
+        "replacement": "path.in.client.resource",
+        "fallback": "string literal"
     },
     "jukebox_song.example_namespace.another_example_disc": {
-        "translation": "jukebox_song.example_namespace.example_disc",
+        "replacement": "jukebox_song.example_namespace.example_disc",
         "fallback": "log.plugin.enable.version"
     },
     "jukebox_song.minecraft.11": {
-        "translation": "jukebox_song.minecraft.11",
+        "replacement": "jukebox_song.minecraft.11",
         "fallback": "C418 - 11"
     }
 }
