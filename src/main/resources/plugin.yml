@@ -5,3 +5,27 @@ api-version: 1.21
 load: POSTWORLD
 authors: [ YouaJing ]
 folia-supported: true
+commands:
+  musichead:
+    description: Main command for MusicHead plugin
+    usage: /musichead <volume|toggle|enable|disable|reload>
+    permission: musichead.command.use
+permissions:
+  musichead.command.use:
+    description: Allow using MusicHead commands
+    default: true
+  musichead.command.volume:
+    description: Allow changing music volume
+    default: true
+  musichead.command.toggle:
+    description: Allow toggling music
+    default: true
+  musichead.command.enable:
+    description: Allow enabling music
+    default: true
+  musichead.command.disable:
+    description: Allow disabling music
+    default: true
+  musichead.command.reload:
+    description: Allow reloading configuration
+    default: op

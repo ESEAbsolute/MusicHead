@@ -3,38 +3,74 @@ package tcc.youajing.musichead;
 import crypticlib.BukkitPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import tcc.youajing.musichead.listeners.PlayerArmorChangeListener;
+import tcc.youajing.musichead.managers.ConfigManager;
+import tcc.youajing.musichead.managers.DatabaseManager;
+import tcc.youajing.musichead.managers.MusicManager;
+import tcc.youajing.musichead.managers.RegistryManager;
+import tcc.youajing.musichead.messages.MessageUtils;
 
 public class MusicHead extends BukkitPlugin {
+    private ConfigManager configManager;
+    private MessageUtils messageUtils;
+    private DatabaseManager databaseManager;
+    private MusicManager musicManager;
+    private RegistryManager soundRegistryManager;
 
     @Override
     public void enable() {
-        //TODO
-        // 初始化团队管理器和监听器
+        configManager = new ConfigManager(this);
+        configManager.loadConfig();
+        messageUtils = new MessageUtils(this);
 
-        PlayerArmorChangeListener Listener = new PlayerArmorChangeListener(this);
-        // 注册命令和监听器
-        getServer().getPluginManager().registerEvents(Listener, this);
-        // team,启动！
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.AQUA + "######################");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.AQUA + "#                    #");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.AQUA + "#头戴音乐已启动#");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.AQUA + "#                    #");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.AQUA + "######################");
+        databaseManager = new DatabaseManager(this);
+        databaseManager.init();
+
+        musicManager = new MusicManager(this);
+        musicManager.loadMusicDurations();
+
+        soundRegistryManager = new RegistryManager(this);
+        soundRegistryManager.loadOverrides();
+
+        registerCommands();
+        registerListeners();
+
+        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.BLUE + "# MusicHead plugin has enabled! #");
+    }
+
+    private void registerCommands() {
+        getCommand("musichead").setExecutor(new tcc.youajing.musichead.commands.MusicHeadCommand(this));
+    }
+
+    private void registerListeners() {
+        Bukkit.getPluginManager().registerEvents(new PlayerArmorChangeListener(this), this);
     }
 
     @Override
     public void disable() {
-        //TODO
-
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "######################");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "#                    #");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "#头戴音乐已关闭#");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "#                    #");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "######################");
-
-
+        if (databaseManager != null) {
+            databaseManager.close();
+        }
+        Bukkit.getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[MusicHead]" + ChatColor.RED + "# MusicHead plugin has disabled! #");
     }
 
+    public ConfigManager getConfigManager() {
+        return configManager;
+    }
 
+    public MessageUtils getMessageUtils() {
+        return messageUtils;
+    }
 
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
+    }
+
+    public MusicManager getMusicManager() {
+        return musicManager;
+    }
+
+    public RegistryManager getSoundRegistryManager() {
+        return soundRegistryManager;
+    }
 }

@@ -12,20 +12,19 @@ repositories {
     maven("https://jitpack.io")
     maven("https://repo.maven.apache.org/maven2/")
     mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 
 dependencies {
     compileOnly("org.jetbrains:annotations:24.0.1")
-    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
-    compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.21.6-R0.1-SNAPSHOT")
     implementation("com.github.YufiriaMazenta:CrypticLib:1.0.5")
+    implementation("org.xerial:sqlite-jdbc:3.46.0.0")
 }
 
 group = "tcc.youajing"
-version = "2.1"
+version = "3.0"
 var mainClass = "${rootProject.group}.${rootProject.name.lowercase()}.MusicHead"
 var pluginVersion: String = version.toString() + "-" + SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis())
 java.sourceCompatibility = JavaVersion.VERSION_21

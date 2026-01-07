@@ -1,0 +1,5 @@
+prefix: "&8[&bMusicHead&8] &r"
+
+language:
+  default: "zh_cn"
+  fallback: "en_us"

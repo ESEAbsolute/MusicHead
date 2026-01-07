@@ -1,0 +1,27 @@
+log.plugin.enable.header: "=========================================="
+log.plugin.enable.message: "&aMusicHead 插件已启用！"
+log.plugin.enable.version: "&a版本：&f %s"
+log.plugin.enable.author: "&a作者：&f %s"
+log.plugin.enable.footer: "=========================================="
+
+log.plugin.disable.header: "=========================================="
+log.plugin.disable.message: "&cMusicHead 插件已禁用！"
+log.plugin.disable.footer: "=========================================="
+
+message.now_playing_prefix: "- 你现在是一个 "
+message.now_playing_suffix: " 唱片机 -"
+
+message.music.duration_missing: "%s (lookup key: %s) 音乐并未配置时长，无法循环播放，请截图给管理员处理"
+message.music.duration_load: "%s 已成功加载，时长为 %s (%s ticks)"
+
+command.usage: "用法：/musichead <%s>"
+command.reload.success: "配置已重载。"
+command.no_permission: "你没有权限执行此命令。"
+command.player_only: "该命令只能由玩家使用。"
+command.volume.usage: "用法：/musichead volume <0-100>"
+command.volume.invalid: "无效的音量值。请使用 0-100 间的整数。"
+command.volume.success: "音量已设置为 %s。"
+command.toggle.on: "接收他人播放的音乐已启用。"
+command.toggle.off: "接收他人播放的音乐已禁用。"
+command.enable.already_enabled: "接收他人播放的音乐已是开启状态。"
+command.disable.already_disabled: "接收他人播放的音乐已是关闭状态。"
